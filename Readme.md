@@ -10,7 +10,7 @@ This project is a comprehensive backend system for a patient heart rate monitori
 
 ## Features
 
--   **Secure JWT Authentication:** Stateless authentication using JSON Web Tokens with a token refresh mechanism and a blacklist for secure logout.
+-   **Secure JWT Authentication:** Stateless authentication using JSON Web Tokens with a token refresh mechanism. 
 -   **Role-Based Access Control (RBAC):** Three distinct user roles (HOD, Doctor, Patient) with granular permissions.
 -   **Data Segregation:** Robust permission system ensures that doctors can only access their own patients' data, and patients can only view their own records.
 -   **Patient & Health Data Management:** Full CRUD (Create, Read, Update, Delete) functionality for patient profiles and endpoints to manage time-series heart rate data.
