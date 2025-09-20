@@ -10,16 +10,16 @@ class PatientAPITests(APITestCase):
         """
         Set up the initial data for all tests.
         """
-        # Create CustomUsers with different roles
+        # Created CustomUsers with different roles
         self.hod = CustomUser.objects.create_user(username='hod', password='password123', role=CustomUser.Role.HOD)
         self.doctor1 = CustomUser.objects.create_user(username='doctor1', password='password123', role=CustomUser.Role.DOCTOR)
         self.doctor2 = CustomUser.objects.create_user(username='doctor2', password='password123', role=CustomUser.Role.DOCTOR)
         
-        # Create a patient user and profile for doctor1
+        # Created a patient user and profile for doctor1
         self.patient1_user = CustomUser.objects.create_user(username='patient1', password='password123', role=CustomUser.Role.PATIENT)
         self.patient1 = Patient.objects.create(user=self.patient1_user, doctor=self.doctor1, full_name='Patient One', age=30)
 
-        # Create a patient user and profile for doctor2
+        # Created a patient user and profile for doctor2
         self.patient2_user = CustomUser.objects.create_user(username='patient2', password='password123', role=CustomUser.Role.PATIENT)
         self.patient2 = Patient.objects.create(user=self.patient2_user, doctor=self.doctor2, full_name='Patient Two', age=40)
 
@@ -32,7 +32,7 @@ class PatientAPITests(APITestCase):
         # Log in as doctor1
         self.client.force_authenticate(user=self.doctor1)
         
-        url = reverse('patient-list') # Assumes 'patient-list' is the name from your router
+        url = reverse('patient-list')
         response = self.client.get(url)
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -54,7 +54,6 @@ class PatientAPITests(APITestCase):
 
     def test_hod_can_list_all_patients(self):
         """
-
         Ensure a user with the HOD role can see all patients from all doctors.
         """
         self.client.force_authenticate(user=self.hod)
@@ -88,7 +87,7 @@ class PatientAPITests(APITestCase):
         # Log in as doctor1
         self.client.force_authenticate(user=self.doctor1)
         
-        # Try to add data for patient2 (who belongs to doctor2)
+        # Try to add data for patient2 
         url = reverse('patient-heart-rates', kwargs={'patient_pk': self.patient2.pk})
         data = {'value': 90}
         response = self.client.post(url, data, format='json')
@@ -123,5 +122,5 @@ class PatientAPITests(APITestCase):
         response = self.client.get(url)
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # The queryset should be empty due to view's filtering logic
+     
         self.assertEqual(len(response.data['results']), 0)

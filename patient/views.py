@@ -65,3 +65,5 @@ class HeartRateListCreateView(generics.ListCreateAPIView):
             raise PermissionDenied("You do not have permission to add data for this patient.")
 
         serializer.save(patient=patient)
+
+    

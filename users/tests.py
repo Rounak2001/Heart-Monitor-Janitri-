@@ -14,7 +14,7 @@ class CustomUserAPITests(APITestCase):
         self.doctor_user = CustomUser.objects.create_user(username='test_doctor', password='password123', role=CustomUser.Role.DOCTOR)
         self.patient_user = CustomUser.objects.create_user(username='test_patient', password='password123', role=CustomUser.Role.PATIENT)
 
-    ## Doctor Creation Tests (`/api/users/create-doctor/`)
+
 
     def test_hod_can_create_doctor(self):
         """
@@ -47,7 +47,7 @@ class CustomUserAPITests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
     
-    ## Patient Creation Tests (`/api/users/create-patient/`)
+
 
     def test_doctor_can_create_patient(self):
         """
@@ -88,7 +88,7 @@ class CustomUserAPITests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    ## Authentication Tests (`/api/users/token/`)
+ 
     
     def test_user_can_login_with_valid_credentials(self):
         """
