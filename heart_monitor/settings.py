@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s*r^c_o6r&_d6sm89soe%u3zuk)88ap%_))8yx^0gl4bgonq3l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*","heartmonitor.pythonanywhere.com"]
 
 
 # Application definition
@@ -81,12 +81,22 @@ WSGI_APPLICATION = 'heart_monitor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default='postgresql://postgres:postgres@localhost:5432/mysite',
+#         conn_max_age=600
+#     )
+# }
 
 
 # Password validation
@@ -163,7 +173,7 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
         # Add this SERVERS list
     'SERVERS': [
-        {'url': 'https://your-app-name.onrender.com', 'description': 'Production Server'},
+        {'url': 'https://heartmonitor.pythonanywhere.com', 'description': 'Production Server'},
         {'url': 'http://127.0.0.1:8000', 'description': 'Local Development Server'},
     ],
     # OTHER SETTINGS
