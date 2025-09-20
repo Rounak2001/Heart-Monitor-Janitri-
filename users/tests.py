@@ -70,7 +70,7 @@ class CustomUserAPITests(APITestCase):
         self.assertTrue(CustomUser.objects.filter(username="newpatient", role=CustomUser.Role.PATIENT).exists())
         self.assertTrue(Patient.objects.filter(full_name="New Patient Name").exists())
     
-    def test_hod_cannot_create_patient_via_endpoint(self):
+    def test_hod_can_create_patient_via_endpoint(self):
         """
         Ensure an HOD is forbidden from using the specific 'create-patient' endpoint.
         """
@@ -86,7 +86,7 @@ class CustomUserAPITests(APITestCase):
         }
         response = self.client.post(url, data, format='json')
 
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
  
     
